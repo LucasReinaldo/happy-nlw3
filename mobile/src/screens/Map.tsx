@@ -1,20 +1,40 @@
-import React from "react";
-import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import React, { useEffect, useState } from "react";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import { RectButton } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+
+import api from "../services/api";
 
 import mapMarker from "../assets/map.png";
 
 const LAT = 53.3437435;
 const LON = -6.2752506;
 
+interface OrphanageProps {
+  id: string;
+  name: string;
+  latitude: number;
+  longitude: number;
+}
+
 const Map: React.FC = () => {
+  const [orphanages, setOrphanages] = useState<OrphanageProps[]>([]);
+
+  useFocusEffect(() => {
+    api.get("/").then((response) => setOrphanages(response.data));
+  });
+  const navigation = useNavigation();
+
+  function sendToDetails(id: string) {
+    navigation.navigate("OrphanageDetails", { id });
+  }
+
+  function sendToCreate() {
+    navigation.navigate("SelectMapPosition");
+  }
+
   return (
     <View>
       <MapView
@@ -27,25 +47,31 @@ const Map: React.FC = () => {
         }}
         style={styles.map}
       >
-        <Marker
-          icon={mapMarker}
-          calloutAnchor={{ x: 2.8, y: 0.85 }}
-          coordinate={{ latitude: LAT, longitude: LON }}
-        >
-          <Callout tooltip>
-            <View style={styles.calloutContainer}>
-              <Text style={styles.calloutText}>Teste</Text>
-            </View>
-          </Callout>
-        </Marker>
+        {orphanages.map(({ id, name, latitude, longitude }) => (
+          <Marker
+            key={id}
+            icon={mapMarker}
+            calloutAnchor={{ x: 2.8, y: 0.85 }}
+            coordinate={{
+              latitude,
+              longitude,
+            }}
+          >
+            <Callout tooltip onPress={() => sendToDetails(id)}>
+              <View style={styles.calloutContainer}>
+                <Text style={styles.calloutText}>{name}</Text>
+              </View>
+            </Callout>
+          </Marker>
+        ))}
       </MapView>
 
       <View style={styles.footer}>
         <Text style={styles.footerText}>Found</Text>
 
-        <TouchableOpacity style={styles.createButton}>
+        <RectButton onPress={sendToCreate} style={styles.createButton}>
           <Ionicons name="md-add" size={32} color="#fff" />
-        </TouchableOpacity>
+        </RectButton>
       </View>
     </View>
   );
