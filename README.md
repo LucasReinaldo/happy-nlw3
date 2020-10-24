@@ -1,13 +1,10 @@
+
 <h1 align="center">
-    <img alt="Ecoleta" src="https://github.com/LucasReinaldo/ecoleta-nlw/blob/master/client/src/assets/logo.svg" width="250px">
-</h1>
-<h1 align="center">
-    <img alt="EcoletaHome" src="https://github.com/LucasReinaldo/ecoleta-nlw/blob/master/client/src/assets/homepage.png" width="1040px">
+    <img alt="#screen1" title="#screen1" src="https://github.com/LucasReinaldo/happy-nlw3/blob/master/assets/main.png" width="1040px">
+    <img alt="#screen2" title="#screen2" src="https://github.com/LucasReinaldo/happy-nlw3/blob/master/assets/map.png" width="1040px">
 </h1>
 <p align="center">
-    <img alt="#screen1" title="#screen1" src="https://github.com/LucasReinaldo/ecoleta-nlw/blob/master/client/src/assets/home-mobile.PNG" width="250px">
-    <img alt="#screen2" title="#screen2" src="https://github.com/LucasReinaldo/ecoleta-nlw/blob/master/client/src/assets/map-mobile.PNG" width="250px">
-    <img alt="#screen2" title="#screen3" src="https://github.com/LucasReinaldo/ecoleta-nlw/blob/master/client/src/assets/detail-mobile.PNG" width="250px">
+    <img alt="#screen2" title="#screen3" src="https://github.com/LucasReinaldo/happy-nlw3/blob/master/assets/mobile.png" width="250px">
 </p>
 
 ## Technologies
@@ -18,7 +15,7 @@ This project was developed with the following technologies:
 
 ## Project
 
-Ecoleta is a project that aims to show, according to your location, the collection points of disposable materials, as Kitchen Oil, Batteries, Papers...
+Happy is a project that aims to show, according to your location, the locations of orphanages...
 
 ## How to contribute
 
